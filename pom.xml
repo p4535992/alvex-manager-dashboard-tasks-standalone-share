@@ -4,14 +4,14 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>br.com.dgcloud</groupId>
     <artifactId>alvex-manager-dashboard-tasks-standalone-share</artifactId>
-    <version>1.1</version>
+    <version>1.2</version>
     <name>alvex-manager-dashboard-tasks-standalone-share Share Module</name>
     <description>Share Module (to be included in the share.war)</description>
     <packaging>jar</packaging>
 
     <properties>
         <!-- Alfresco Maven Plugin version to use -->
-	    <alfresco.sdk.version>3.0.1</alfresco.sdk.version>
+	    <alfresco.sdk.version>3.1.0</alfresco.sdk.version>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
@@ -41,7 +41,32 @@
         <maven.compiler.target>1.7</maven.compiler.target>
     </properties>
 
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+		        <groupId>it.abd.pasharing</groupId>
+		        <artifactId>de.acosix.alfresco.maven.module.parent-5.2.g</artifactId>
+		        <version>1.1.0-SNAPSHOT</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
     <dependencies>
+    	<!-- ===================== -->
+    	<!-- SHARE DEPENDENCIES -->
+	    <!-- ===================== -->
+		<dependency>
+			<groupId>org.alfresco</groupId>
+			<artifactId>aikau</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.alfresco</groupId>
+			<artifactId>aikau-forms-runtime-support</artifactId>
+			<scope>provided</scope>
+		</dependency>
         <!-- Following dependencies are needed for compiling Java code in src/main/java -->
         <dependency>
             <groupId>${alfresco.groupId}</groupId>
@@ -50,14 +75,46 @@
             <classifier>classes</classifier>
             <scope>provided</scope>
         </dependency>
-
         <dependency>
-            <groupId>org.alfresco.surf</groupId>
-            <artifactId>spring-surf-api</artifactId>
-            <version>${alfresco.surf.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        
+             <groupId>org.alfresco.surf</groupId>
+             <artifactId>spring-surf</artifactId>
+             <version>${alfresco.surf.version}</version>
+             <scope>provided</scope>
+         </dependency>
+         <dependency>
+             <groupId>org.alfresco.surf</groupId>
+             <artifactId>spring-surf-api</artifactId>
+             <version>${alfresco.surf.version}</version>
+             <scope>provided</scope>
+         </dependency>
+		<dependency>
+			<groupId>org.alfresco</groupId>
+			<artifactId>alfresco-web-framework-commons</artifactId>
+			<classifier>classes</classifier>
+			<version>5.2.f</version>
+			<scope>provided</scope>
+		</dependency>
+         <!-- Alfresco distribution POM does not define versions for following libraries -->
+         <dependency>
+             <groupId>org.springframework</groupId>
+             <artifactId>spring-beans</artifactId>
+             <scope>provided</scope>
+         </dependency>
+         <dependency>
+             <groupId>org.springframework</groupId>
+             <artifactId>spring-context</artifactId>
+             <scope>provided</scope>
+         </dependency>
+         <dependency>
+             <groupId>org.alfresco.surf</groupId>
+             <artifactId>spring-webscripts</artifactId>
+             <scope>provided</scope>
+         </dependency>
+         <dependency>
+             <groupId>org.slf4j</groupId>
+             <artifactId>slf4j-api</artifactId>
+             <scope>provided</scope>
+         </dependency>
         <dependency>
 		    <groupId>javax.servlet</groupId>
 		    <artifactId>javax.servlet-api</artifactId>
